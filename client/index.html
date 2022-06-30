@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="account">账号</label>
+    <input
+      type="text"
+      value=""
+      name="account"
+      id="account"
+      placeholder="请输入账号"
+    />
+    <br /><br />
+    <label for="pwd">密码</label>
+    <input
+      type="password"
+      value=""
+      name="pwd"
+      id="pwd"
+      placeholder="请输入密码"
+    />
+    <br /><br />
+    <button id="loginBtn">登录/注册</button>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const loginBtn = document.getElementById("loginBtn");
+      const account = document.getElementById("account");
+      const pwd = document.getElementById("pwd");
+      // 执行程序
+      const init = () => {
+        bindEvent();
+      };
+
+      // 绑定事件
+      function bindEvent() {
+        loginBtn.addEventListener("click", login, false);
+      }
+
+      async function login() {
+        //  const data =  await axios.get("http://localhost:9000/home")
+        //  console.log(data)
+        await axios
+          .post("http://localhost:9000/login/register", {
+            name: account.value,
+            password: pwd.value,
+          })
+      }
+      init();
+    </script>
+  </body>
+</html>
